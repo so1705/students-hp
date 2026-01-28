@@ -156,17 +156,21 @@ export default defineConfig({
   plugins,
   resolve: {
     alias: {
-      "@": path.resolve(import.meta.dirname, "client", "src"),
+      // "client/src" を "src" に変更
+      "@": path.resolve(import.meta.dirname, "src"),
       "@shared": path.resolve(import.meta.dirname, "shared"),
       "@assets": path.resolve(import.meta.dirname, "attached_assets"),
     },
   },
   envDir: path.resolve(import.meta.dirname),
-  root: path.resolve(import.meta.dirname, "client"),
+  // root を "client" から現在の場所 (import.meta.dirname) に変更
+  root: path.resolve(import.meta.dirname), 
   build: {
-    outDir: path.resolve(import.meta.dirname, "dist/public"),
+    // outDir を "dist/public" からシンプルな "dist" に変更（Vercelの標準に合わせる）
+    outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
   },
+  // ...残りの server 設定などはそのままでOK
   server: {
     port: 3000,
     strictPort: false, // Will find next available port if 3000 is busy
